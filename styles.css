@@ -1,0 +1,461 @@
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+    scroll-behavior:smooth;
+}
+
+body{
+    background:#141414;
+    color:white;
+    font-family:'Inter', Arial, sans-serif;
+}
+
+.container{
+    width:90%;
+    max-width:1200px;
+    margin:auto;
+}
+
+/* ─── HEADER & PILL NAV ─── */
+
+header{
+    position:fixed;
+    width:100%;
+    top:0;
+    z-index:100;
+    display:flex;
+    flex-direction:column;
+    align-items:center;
+    padding-top:18px;
+    pointer-events:none;
+}
+
+.logo-wrap{
+    position:absolute;
+    top:0;
+    left:0;
+    height:70px;
+    display:flex;
+    align-items:center;
+    padding-left:40px;
+    pointer-events:auto;
+}
+
+.logo{
+    color:#d6b25d;
+    font-family:'Cormorant Garamond', serif;
+    font-size:22px;
+    letter-spacing:4px;
+    font-weight:600;
+}
+
+#pill-nav{
+    pointer-events:auto;
+}
+
+.nav-pill{
+    position:relative;
+    display:flex;
+    align-items:center;
+    gap:2px;
+    background:rgba(255,255,255,0.07);
+    backdrop-filter:blur(20px);
+    -webkit-backdrop-filter:blur(20px);
+    border:1px solid rgba(255,255,255,0.13);
+    border-radius:50px;
+    padding:6px;
+    box-shadow:0 8px 32px rgba(0,0,0,0.35);
+}
+
+.nav-pill a{
+    position:relative;
+    color:rgba(255,255,255,0.75);
+    text-decoration:none;
+    font-size:13px;
+    font-weight:400;
+    letter-spacing:0.3px;
+    padding:8px 18px;
+    border-radius:30px;
+    transition:color 0.3s;
+    z-index:2;
+    white-space:nowrap;
+}
+
+.nav-pill a:hover{
+    color:#fff;
+}
+
+.nav-pill a.active{
+    color:#141414;
+    font-weight:500;
+}
+
+/* The gliding highlight */
+.nav-indicator{
+    position:absolute;
+    top:6px;
+    left:6px;
+    height:calc(100% - 12px);
+    background:#d6b25d;
+    border-radius:30px;
+    transition:left 0.35s cubic-bezier(0.4,0,0.2,1), width 0.35s cubic-bezier(0.4,0,0.2,1);
+    z-index:1;
+    pointer-events:none;
+}
+
+/* ─── HERO ─── */
+
+.hero{
+    height:100vh;
+    background:url("https://images.unsplash.com/photo-1503095396549-807759245b35?auto=format&fit=crop&w=1800&q=80") center/cover;
+    position:relative;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+}
+
+.overlay{
+    position:absolute;
+    inset:0;
+    background:rgba(0,0,0,0.6);
+}
+
+.hero-content{
+    position:relative;
+    text-align:center;
+    z-index:2;
+    max-width:700px;
+    padding:0 20px;
+}
+
+.hero h1{
+    font-family:'Cormorant Garamond', serif;
+    font-size:62px;
+    font-weight:400;
+    font-style:italic;
+    line-height:1.15;
+    margin-bottom:20px;
+}
+
+.hero p{
+    font-size:18px;
+    font-weight:300;
+    opacity:0.85;
+    margin-bottom:35px;
+    line-height:1.6;
+}
+
+.btn{
+    display:inline-block;
+    padding:14px 34px;
+    background:#d6b25d;
+    color:black;
+    text-decoration:none;
+    font-weight:500;
+    font-size:14px;
+    letter-spacing:0.5px;
+    border-radius:30px;
+    transition:.3s;
+}
+
+.btn:hover{
+    transform:translateY(-4px);
+    box-shadow:0 12px 30px rgba(214,178,93,0.35);
+}
+
+/* ─── SECTIONS ─── */
+
+section{
+    padding:100px 10%;
+}
+
+section h2{
+    text-align:center;
+    margin-bottom:55px;
+    font-family:'Cormorant Garamond', serif;
+    font-size:42px;
+    font-weight:400;
+    color:#d6b25d;
+    letter-spacing:1px;
+}
+
+/* ─── ABOUT ─── */
+
+.about{
+    background:#1a1a1a;
+    text-align:center;
+    line-height:1.9;
+    font-weight:300;
+    font-size:17px;
+}
+
+/* ─── SHOWS — FLYER / BANNER STYLE ─── */
+
+.shows-list{
+    display:flex;
+    flex-direction:column;
+    gap:40px;
+    max-width:1000px;
+    margin:0 auto;
+}
+
+.show-flyer{
+    display:grid;
+    grid-template-columns:420px 1fr;
+    border-radius:18px;
+    overflow:hidden;
+    background:#1e1e1e;
+    box-shadow:0 20px 60px rgba(0,0,0,0.5);
+    transition:transform 0.4s ease, box-shadow 0.4s ease;
+}
+
+.show-flyer:hover{
+    transform:translateY(-8px);
+    box-shadow:0 30px 80px rgba(0,0,0,0.6);
+}
+
+.flyer-image{
+    position:relative;
+    overflow:hidden;
+}
+
+.flyer-image img{
+    width:100%;
+    height:100%;
+    min-height:340px;
+    object-fit:cover;
+    display:block;
+    transition:transform 0.6s ease;
+}
+
+.show-flyer:hover .flyer-image img{
+    transform:scale(1.04);
+}
+
+.flyer-badge{
+    position:absolute;
+    top:18px;
+    left:18px;
+    background:#d6b25d;
+    color:#111;
+    font-size:12px;
+    font-weight:700;
+    letter-spacing:2px;
+    padding:5px 12px;
+    border-radius:20px;
+}
+
+.flyer-body{
+    padding:40px 38px;
+    display:flex;
+    flex-direction:column;
+    justify-content:center;
+    gap:0;
+}
+
+.flyer-eyebrow{
+    font-size:11px;
+    font-weight:500;
+    letter-spacing:3px;
+    text-transform:uppercase;
+    color:#d6b25d;
+    margin-bottom:14px;
+}
+
+.flyer-body h3{
+    font-family:'Cormorant Garamond', serif;
+    font-size:34px;
+    font-weight:600;
+    line-height:1.2;
+    margin-bottom:16px;
+}
+
+.flyer-body p{
+    font-size:15px;
+    font-weight:300;
+    line-height:1.8;
+    color:rgba(255,255,255,0.75);
+    margin-bottom:26px;
+}
+
+.dates{
+    display:flex;
+    flex-wrap:wrap;
+    gap:8px;
+    margin-bottom:30px;
+}
+
+.dates span{
+    background:rgba(214,178,93,0.12);
+    border:1px solid rgba(214,178,93,0.35);
+    padding:6px 14px;
+    border-radius:30px;
+    color:#d6b25d;
+    font-size:13px;
+    font-weight:500;
+    letter-spacing:0.3px;
+}
+
+.flyer-btn{
+    display:inline-block;
+    padding:11px 24px;
+    background:transparent;
+    color:white;
+    text-decoration:none;
+    border:1px solid rgba(255,255,255,0.3);
+    border-radius:30px;
+    font-size:13px;
+    letter-spacing:0.5px;
+    transition:.3s;
+    align-self:flex-start;
+}
+
+.flyer-btn:hover{
+    background:#d6b25d;
+    color:#111;
+    border-color:#d6b25d;
+}
+
+/* ─── MEMBERS ─── */
+
+.cards{
+    display:grid;
+    grid-template-columns:repeat(auto-fit,minmax(220px,1fr));
+    gap:25px;
+}
+
+.card{
+    background:#1e1e1e;
+    padding:35px;
+    border-radius:15px;
+    transition:.3s;
+    text-align:center;
+    border:1px solid rgba(255,255,255,0.05);
+}
+
+.card:hover{
+    transform:translateY(-8px);
+    background:#262626;
+    border-color:rgba(214,178,93,0.2);
+}
+
+.avatar{
+    font-size:65px;
+    margin-bottom:18px;
+}
+
+.card h3{
+    font-family:'Cormorant Garamond', serif;
+    font-size:22px;
+    margin-bottom:6px;
+}
+
+.card p{
+    font-size:13px;
+    font-weight:300;
+    color:rgba(255,255,255,0.5);
+    letter-spacing:1px;
+    text-transform:uppercase;
+}
+
+/* ─── CONTACT ─── */
+
+.contact{
+    background:#1a1a1a;
+}
+
+.contact form{
+    max-width:660px;
+    margin:auto;
+    display:flex;
+    flex-direction:column;
+    gap:16px;
+}
+
+input,
+textarea{
+    padding:15px 18px;
+    background:#242424;
+    border:1px solid rgba(255,255,255,0.08);
+    color:white;
+    border-radius:10px;
+    font-family:'Inter', sans-serif;
+    font-size:14px;
+    transition:border-color 0.3s;
+}
+
+input:focus,
+textarea:focus{
+    outline:none;
+    border-color:rgba(214,178,93,0.5);
+}
+
+textarea{
+    height:180px;
+    resize:none;
+}
+
+button[type="submit"]{
+    padding:15px;
+    background:#d6b25d;
+    border:none;
+    cursor:pointer;
+    font-weight:600;
+    font-size:14px;
+    letter-spacing:0.5px;
+    border-radius:10px;
+    transition:.3s;
+    font-family:'Inter', sans-serif;
+}
+
+button[type="submit"]:hover{
+    background:#c9a44c;
+    transform:translateY(-2px);
+}
+
+/* ─── FOOTER ─── */
+
+footer{
+    padding:35px;
+    background:#0d0d0d;
+    text-align:center;
+    color:rgba(255,255,255,0.3);
+    font-size:13px;
+    letter-spacing:1px;
+}
+
+/* ─── REVEAL ANIMATION ─── */
+
+.reveal{
+    opacity:0;
+    transform:translateY(35px);
+    transition:opacity 0.8s ease, transform 0.8s ease;
+}
+
+.reveal.active{
+    opacity:1;
+    transform:translateY(0);
+}
+
+/* ─── RESPONSIVE ─── */
+
+@media(max-width:750px){
+    .show-flyer{
+        grid-template-columns:1fr;
+    }
+    .flyer-image img{
+        min-height:220px;
+        height:220px;
+    }
+    .hero h1{
+        font-size:38px;
+    }
+    .logo-wrap{
+        padding-left:20px;
+    }
+    .nav-pill a{
+        padding:7px 11px;
+        font-size:12px;
+    }
+}
