@@ -5,6 +5,54 @@
     scroll-behavior:smooth;
 }
 
+/* ─── VIEW TRANSITIONS (animated page navigation) ─── */
+/* Native browser API — animates between full page loads (e.g. index.html → parastaseis/xarh_2026.html).
+   Currently supported in Chrome/Edge; other browsers just navigate normally (safe fallback). */
+@view-transition{
+    navigation:auto;
+}
+
+::view-transition-old(root),
+::view-transition-new(root){
+    animation-duration:0.45s;
+    animation-timing-function:cubic-bezier(0.4,0,0.2,1);
+}
+
+::view-transition-old(root){
+    animation-name:page-fade-out;
+}
+
+::view-transition-new(root){
+    animation-name:page-fade-in;
+}
+
+@keyframes page-fade-out{
+    to{
+        opacity:0;
+        transform:translateY(-14px);
+    }
+}
+
+@keyframes page-fade-in{
+    from{
+        opacity:0;
+        transform:translateY(14px);
+    }
+}
+
+/* Lock the header/nav — it keeps its own identity across the transition
+   instead of fading with the rest of the page, so it reads as "always there". */
+header{
+    view-transition-name:site-header;
+}
+
+::view-transition-group(site-header),
+::view-transition-old(site-header),
+::view-transition-new(site-header){
+    animation:none;
+    mix-blend-mode:normal;
+}
+
 body{
     background:#141414;
     color:white;
@@ -343,6 +391,64 @@ section h2{
     border-color:#d6b25d;
 }
 
+/* ─── FIND US / MAP ─── */
+
+.find-us{
+    background:#1a1a1a;
+}
+
+.find-us-wrap{
+    display:grid;
+    grid-template-columns:1.4fr 1fr;
+    gap:40px;
+    max-width:1000px;
+    margin:0 auto;
+    align-items:stretch;
+}
+
+.map-embed{
+    position:relative;
+    min-height:340px;
+    border-radius:18px;
+    overflow:hidden;
+    box-shadow:0 20px 60px rgba(0,0,0,0.5);
+    border:1px solid rgba(255,255,255,0.07);
+}
+
+.map-embed iframe{
+    position:absolute;
+    inset:0;
+    width:100%;
+    height:100%;
+    filter:grayscale(15%) contrast(1.05);
+}
+
+.find-us-info{
+    background:#1e1e1e;
+    border:1px solid rgba(255,255,255,0.06);
+    border-radius:18px;
+    padding:36px 32px;
+    display:flex;
+    flex-direction:column;
+    justify-content:center;
+    gap:8px;
+}
+
+.find-us-info h3{
+    font-family:'Playfair Display', serif;
+    font-size:24px;
+    font-weight:600;
+    color:white;
+    margin-bottom:4px;
+}
+
+.find-us-info p{
+    font-size:14px;
+    font-weight:300;
+    color:rgba(255,255,255,0.6);
+    margin-bottom:22px;
+}
+
 /* ─── MEMBERS ─── */
 
 .cards{
@@ -422,6 +528,18 @@ textarea{
     resize:none;
 }
 
+.hidden-field{
+    position:absolute;
+    left:-9999px;
+    opacity:0;
+}
+
+.form-status{
+    text-align:center;
+    font-size:14px;
+    min-height:20px;
+}
+
 button[type="submit"]{
     padding:15px;
     background:#d6b25d;
@@ -450,6 +568,30 @@ footer{
     font-size:13px;
     letter-spacing:1px;
     font-family:'DM Sans', sans-serif;
+}
+
+.footer-contact{
+    display:flex;
+    justify-content:center;
+    flex-wrap:wrap;
+    gap:24px;
+    margin-bottom:16px;
+    color:rgba(255,255,255,0.55);
+    font-size:13px;
+}
+
+.footer-contact a{
+    color:rgba(255,255,255,0.55);
+    text-decoration:none;
+    transition:color 0.3s;
+}
+
+.footer-contact a:hover{
+    color:#d6b25d;
+}
+
+.footer-credit{
+    color:rgba(255,255,255,0.3);
 }
 
 /* ─── REVEAL ANIMATION ─── */
@@ -484,5 +626,15 @@ footer{
     .nav-pill a{
         padding:7px 11px;
         font-size:12px;
+    }
+    .find-us-wrap{
+        grid-template-columns:1fr;
+    }
+    .map-embed{
+        min-height:260px;
+    }
+    .footer-contact{
+        flex-direction:column;
+        gap:10px;
     }
 }

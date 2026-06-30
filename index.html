@@ -63,7 +63,7 @@
             <a href="#home" data-section="home">Αρχική</a>
             <a href="#about" data-section="about">Η Ομάδα</a>
             <a href="#shows" data-section="shows">Παραστάσεις</a>
-            <a href="#members" data-section="members">Μέλη</a>
+            <a href="#find-us" data-section="find-us">Βρείτε μας</a>
             <a href="#contact" data-section="contact">Επικοινωνία</a>
             <span class="nav-indicator"></span>
         </div>
@@ -127,44 +127,46 @@
     </div>
 </section>
 
-<section class="members" id="members">
-    <h2>Η Ομάδα</h2>
-    <div class="cards">
-        <div class="card member">
-            <div class="avatar">🎭</div>
-            <h3>1</h3>
-            <p>Σκηνοθέτης</p>
+<section class="find-us" id="find-us">
+    <h2>Βρείτε μας εδώ</h2>
+    <div class="find-us-wrap">
+        <div class="map-embed">
+            <iframe
+                src="https://maps.google.com/maps?q=Υμηττού%20168%2C%20Παγκράτι%2C%2011636&t=&z=15&ie=UTF8&iwloc=&output=embed"
+                width="100%" height="100%" style="border:0;" allowfullscreen="" loading="lazy"
+                referrerpolicy="no-referrer-when-downgrade"
+                title="Χάρτης τοποθεσίας ΑΙΘΑΝΟΛΗ">
+            </iframe>
         </div>
-        <div class="card member">
-            <div class="avatar">🎭</div>
-            <h3>1</h3>
-            <p>Ηθοποιός</p>
-        </div>
-        <div class="card member">
-            <div class="avatar">🎭</div>
-            <h3>1</h3>
-            <p>Ηθοποιός</p>
-        </div>
-        <div class="card member">
-            <div class="avatar">🎭</div>
-            <h3>1</h3>
-            <p>Φωτισμός</p>
+        <div class="find-us-info">
+            <h3>Υμηττού 168, Παγκράτι</h3>
+            <p>Τ.Κ. 11636, Αθήνα</p>
+            <a href="https://maps.google.com/maps?q=Υμηττού%20168%2C%20Παγκράτι%2C%2011636" target="_blank" rel="noopener" class="flyer-btn">Άνοιγμα στο Google Maps →</a>
         </div>
     </div>
 </section>
 
 <section class="contact" id="contact">
     <h2>Επικοινωνία</h2>
-    <form>
-        <input type="text" placeholder="Όνομα">
-        <input type="email" placeholder="Email">
-        <textarea placeholder="Μήνυμα"></textarea>
+    <form id="contact-form" action="https://formspree.io/f/mzdlawpl" method="POST">
+        <input type="text" name="_gotcha" class="hidden-field" tabindex="-1" autocomplete="off">
+        <input type="text" name="name" placeholder="Όνομα" required>
+        <input type="email" name="email" placeholder="Email" required>
+        <textarea name="message" placeholder="Μήνυμα" required></textarea>
         <button type="submit">Αποστολή</button>
+        <p class="form-status" aria-live="polite"></p>
     </form>
 </section>
 
 <footer>
-    © 2026 ΑΙΘΑΝΟΛΗ • Thomas Tsolakis
+    <div class="footer-contact">
+        <span>📍 Υμηττού 168, Παγκράτι, Τ.Κ. 11636</span>
+        <span>✉️ <a href="mailto:periplanisi@omadaplani.gr">periplanisi@omadaplani.gr</a></span>
+        <span>📞 <a href="tel:+302160026231">+30 216 0026231</a></span>
+    </div>
+    <div class="footer-credit">
+        © 2026 ΑΙΘΑΝΟΛΗ • Thomas Tsolakis
+    </div>
 </footer>
 
 </body>

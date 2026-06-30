@@ -5,6 +5,54 @@
     scroll-behavior:smooth;
 }
 
+/* ─── VIEW TRANSITIONS (animated page navigation) ─── */
+/* Native browser API — animates between full page loads (e.g. index.html → parastaseis/xarh_2026.html).
+   Currently supported in Chrome/Edge; other browsers just navigate normally (safe fallback). */
+@view-transition{
+    navigation:auto;
+}
+
+::view-transition-old(root),
+::view-transition-new(root){
+    animation-duration:0.45s;
+    animation-timing-function:cubic-bezier(0.4,0,0.2,1);
+}
+
+::view-transition-old(root){
+    animation-name:page-fade-out;
+}
+
+::view-transition-new(root){
+    animation-name:page-fade-in;
+}
+
+@keyframes page-fade-out{
+    to{
+        opacity:0;
+        transform:translateY(-14px);
+    }
+}
+
+@keyframes page-fade-in{
+    from{
+        opacity:0;
+        transform:translateY(14px);
+    }
+}
+
+/* Lock the header/nav — it keeps its own identity across the transition
+   instead of fading with the rest of the page, so it reads as "always there". */
+header{
+    view-transition-name:site-header;
+}
+
+::view-transition-group(site-header),
+::view-transition-old(site-header),
+::view-transition-new(site-header){
+    animation:none;
+    mix-blend-mode:normal;
+}
+
 body{
     background:#141414;
     color:white;
@@ -279,6 +327,16 @@ header{
     border-color:rgba(214,178,93,0.3);
 }
 
+.date-weekday{
+    font-size:11px;
+    font-weight:500;
+    letter-spacing:1.5px;
+    text-transform:uppercase;
+    color:rgba(255,255,255,0.4);
+    min-width:78px;
+    font-family:'DM Sans', sans-serif;
+}
+
 .date-day{
     font-family:'Playfair Display', serif;
     font-size:32px;
@@ -317,46 +375,42 @@ header{
 
 /* ─── CAST ─── */
 
-.cast-grid{
+.cast-list{
     display:grid;
-    grid-template-columns:repeat(auto-fit, minmax(180px, 1fr));
-    gap:20px;
+    grid-template-columns:1fr 1fr;
+    gap:0 50px;
     margin-top:10px;
 }
 
-.cast-card{
-    background:#1e1e1e;
-    border:1px solid rgba(255,255,255,0.06);
-    border-radius:14px;
-    padding:28px 20px;
-    text-align:center;
-    transition:border-color 0.3s, transform 0.3s;
+.cast-row{
+    display:flex;
+    justify-content:space-between;
+    align-items:baseline;
+    gap:16px;
+    padding:14px 0;
+    border-bottom:1px solid rgba(255,255,255,0.07);
+    transition:border-color 0.3s;
 }
 
-.cast-card:hover{
-    border-color:rgba(214,178,93,0.25);
-    transform:translateY(-5px);
-}
-
-.cast-avatar{
-    font-size:48px;
-    margin-bottom:14px;
+.cast-row:hover{
+    border-color:rgba(214,178,93,0.3);
 }
 
 .cast-role{
-    font-size:11px;
+    font-size:12px;
     font-weight:500;
-    letter-spacing:2px;
-    text-transform:uppercase;
+    letter-spacing:1px;
     color:#d6b25d;
-    margin-bottom:6px;
     font-family:'DM Sans', sans-serif;
+    white-space:nowrap;
 }
 
 .cast-name{
     font-family:'Playfair Display', serif;
-    font-size:20px;
+    font-size:17px;
     font-weight:400;
+    color:white;
+    text-align:right;
 }
 
 /* ─── CTA SECTION ─── */
@@ -408,12 +462,36 @@ header{
 /* ─── FOOTER ─── */
 
 footer{
-    padding:30px;
+    padding:35px;
     background:#0d0d0d;
     text-align:center;
     color:rgba(255,255,255,0.3);
     font-size:13px;
     letter-spacing:1px;
+}
+
+.footer-contact{
+    display:flex;
+    justify-content:center;
+    flex-wrap:wrap;
+    gap:24px;
+    margin-bottom:16px;
+    color:rgba(255,255,255,0.55);
+    font-size:13px;
+}
+
+.footer-contact a{
+    color:rgba(255,255,255,0.55);
+    text-decoration:none;
+    transition:color 0.3s;
+}
+
+.footer-contact a:hover{
+    color:#d6b25d;
+}
+
+.footer-credit{
+    color:rgba(255,255,255,0.3);
 }
 
 footer a{
@@ -442,5 +520,16 @@ footer a:hover{
     .nav-pill a{
         padding:7px 12px;
         font-size:12px;
+    }
+    .cast-list{
+        grid-template-columns:1fr;
+    }
+    .date-weekday{
+        min-width:62px;
+        font-size:10px;
+    }
+    .footer-contact{
+        flex-direction:column;
+        gap:10px;
     }
 }

@@ -59,8 +59,46 @@ const scrollObserver = new IntersectionObserver(entries => {
 
 sectionEls.forEach(s => scrollObserver.observe(s));
 
-// ─── FORM SUBMIT ───
-document.querySelector("form").addEventListener("submit", e => {
-    e.preventDefault();
-    alert("Το μήνυμά σας στάλθηκε! (Demo)");
-});
+// ─── FORM SUBMIT (Formspree) ───
+const contactForm = document.getElementById("contact-form");
+if (contactForm) {
+    const statusEl = contactForm.querySelector(".form-status");
+
+    contactForm.addEventListener("submit", (e) => {
+        e.preventDefault();
+
+        const formData = new FormData(contactForm);
+        const submitBtn = contactForm.querySelector('button[type="submit"]');
+
+        submitBtn.disabled = true;
+        submitBtn.textContent = "Αποστολή...";
+        if (statusEl) statusEl.textContent = "";
+
+        fetch(contactForm.action, {
+            method: "POST",
+            body: formData,
+            headers: { Accept: "application/json" },
+        })
+            .then((response) => {
+                if (response.ok) {
+                    if (statusEl) {
+                        statusEl.textContent = "✓ Το μήνυμά σας στάλθηκε! Θα επικοινωνήσουμε σύντομα μαζί σας.";
+                        statusEl.style.color = "#d6b25d";
+                    }
+                    contactForm.reset();
+                } else {
+                    throw new Error("Submission failed");
+                }
+            })
+            .catch(() => {
+                if (statusEl) {
+                    statusEl.textContent = "Κάτι πήγε στραβά. Δοκιμάστε ξανά ή στείλτε μας email απευθείας.";
+                    statusEl.style.color = "#e57373";
+                }
+            })
+            .finally(() => {
+                submitBtn.disabled = false;
+                submitBtn.textContent = "Αποστολή";
+            });
+    });
+}
