@@ -638,3 +638,41 @@ footer{
         gap:10px;
     }
 }
+
+.countdown-section {
+    text-align: center;
+    padding: 80px 20px;
+}
+
+.countdown-section h2 {
+    font-size: 2.5rem;
+    margin-bottom: 30px;
+}
+
+#countdown {
+    display: flex;
+    justify-content: center;
+    gap: 25px;
+    flex-wrap: wrap;
+}
+
+#countdown div {
+    background: rgba(255,255,255,.08);
+    backdrop-filter: blur(10px);
+    border: 1px solid rgba(255,255,255,.15);
+    border-radius: 18px;
+    padding: 20px;
+    min-width: 110px;
+}
+
+#countdown span {
+    display: block;
+    font-size: 3rem;
+    font-weight: bold;
+}
+
+#countdown small {
+    opacity: .8;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+}
